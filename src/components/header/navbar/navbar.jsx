@@ -1,10 +1,12 @@
 import React from "react";
+import 'beercss';
 import './navbar.css';
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
     return (
-        <nav className="navbar">
+        <div className="navbar">
+        <nav className="navbar-container">
             <ul>
                 <li>
                     <Link to="/entrees">Entrées</Link>
@@ -20,6 +22,7 @@ const Navbar = () => {
                 </li>
             </ul>
         </nav>
+        </div>
     );
 }
 export default Navbar;
