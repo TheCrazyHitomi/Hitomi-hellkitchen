@@ -8,6 +8,7 @@ import Starters from './pages/starters/starters'
 import Plats from './pages/plats/plats'
 import Desserts from './pages/desserts/desserts'
 import NewRecipe from './pages/newRecipe/newRecipe'
+import Footer from './components/footer/footer'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -20,6 +21,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/desserts" element={<Desserts />} />
           <Route path="/nouvelle-recette" element={<NewRecipe />} />
         </Routes>
+        <Footer />
     </BrowserRouter>
   </StrictMode>,
 )

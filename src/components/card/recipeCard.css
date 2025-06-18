@@ -1,0 +1,30 @@
+.recipe-card {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    border-radius: 20px;
+	width: 220px;
+
+}
+
+.recipe-card li {
+    border-radius: 5px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.recipe-card img {
+    height: 220px;
+	width: 220px;
+	border-radius: 15px;
+	position: relative;
+    object-fit: cover;
+	z-index: 100;
+}
+
+.recipe-card h5 {
+    margin: 10px;
+}
