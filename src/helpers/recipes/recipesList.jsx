@@ -2,7 +2,7 @@ export const recipeList = [
 {
     id: 1,
     recipeType: "plat principal",
-    spiceLvl: "mediumSpice",
+    spiceLvl: 1,
     image: "src/assets/images/carbonara.jpg",
     recipeName: "Spaghetti Carbonara",
     ingredients: [
@@ -22,7 +22,7 @@ export const recipeList = [
 {
     id: 2,
     recipeType: "dessert",
-    image: "src/assets/images/mousseChocolat.jpg    ",
+    image: "src/assets/images/mousseChocolat.jpg",
     recipeName: "Chocolate Mousse",
     ingredients: [
     "200g Dark chocolate",
@@ -40,7 +40,7 @@ export const recipeList = [
 {
     id: 3,
     recipeType: "plat principal",
-    spiceLvl: "highSpice",
+    spiceLvl: 3,
     image: "src/assets/images/chickenCurry.jpg",
     recipeName: "Chicken Curry",
     ingredients: [
@@ -89,6 +89,26 @@ export const recipeList = [
         "Toast baguette slices.",
         "Mix diced tomatoes, basil, and minced garlic.",
         "Top toasted bread with the mixture and drizzle with olive oil."
+    ]
+},
+{
+    id: 6,
+    recipeType: "plat principal",
+    spiceLvl: 4,
+    image: "src/assets/images/tteokbokki.jpg",
+    recipeName: "Teokbokki",
+    ingredients: [
+    "Rice cakes",
+    "Fish cakes",
+    "Gochujang (Korean chili paste)",
+    "Garlic",
+    "Sesame oil"
+    ],
+    instructions: [
+        "Heat sesame oil in a pan.",
+        "Add minced garlic and ginger.",
+        "Stir-fry vegetables until tender.",
+        "Add soy sauce and serve."
     ]
 }
 ];

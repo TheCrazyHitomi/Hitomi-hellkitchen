@@ -1,4 +1,5 @@
 .recipe-card {
+    position: relative;
     list-style: none;
     padding: 0;
     display: flex;
@@ -7,7 +8,7 @@
     flex-direction: column;
     border-radius: 20px;
 	width: 220px;
-
+    z-index: 1;
 }
 
 .recipe-card li {
