@@ -1,23 +1,14 @@
 import { useState } from "react";
-import { recipeList } from "../../helpers/recipes/recipesList";
 import "./filter.css"; // Assuming you have a CSS file for styling
 import FilterIngredient from "./filterIngredient/filterIngredient";
 import FilterSpiceLevel from "./filterSpiceLvl/filterSpiceLvl";
 import FilterType from "./filterType/filterType";
 
 
-const Filters = () => {
+const Filters = ({recipeTypes, selectedRecipeType, setSelectedRecipeType}) => {
 
     const [isOpen, setIsOpen] = useState(false);
     
-    const recipeTypes = recipeList.reduce(
-            (acc, recipe) => 
-                    acc.includes(recipe.recipeType) ? acc : acc.concat(recipe.recipeType),
-                []
-            )
-            console.log(recipeTypes)
-    
-    const [selectedRecipeType, setSelectedRecipeType] = useState("recipeType");
 
   return isOpen ? (
     <>

@@ -1,4 +1,4 @@
-export const recipeList = [
+export const recipesData = [
 {
     id: 1,
     recipeType: "main",
