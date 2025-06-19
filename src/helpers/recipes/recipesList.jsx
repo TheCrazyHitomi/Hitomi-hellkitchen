@@ -1,7 +1,7 @@
 export const recipeList = [
 {
     id: 1,
-    recipeType: "plat principal",
+    recipeType: "main",
     spiceLvl: 1,
     image: "src/assets/images/carbonara.jpg",
     recipeName: "Spaghetti Carbonara",
@@ -39,7 +39,7 @@ export const recipeList = [
 },
 {
     id: 3,
-    recipeType: "plat principal",
+    recipeType: "main",
     spiceLvl: 3,
     image: "src/assets/images/chickenCurry.jpg",
     recipeName: "Chicken Curry",
@@ -93,7 +93,7 @@ export const recipeList = [
 },
 {
     id: 6,
-    recipeType: "plat principal",
+    recipeType: "main",
     spiceLvl: 4,
     image: "src/assets/images/tteokbokki.jpg",
     recipeName: "Teokbokki",
