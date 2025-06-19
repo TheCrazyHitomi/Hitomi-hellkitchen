@@ -14,10 +14,11 @@ const RecipeCard = ({ id, image, recipeName, spiceLvl }) => {
   console.log(`Rendering RecipeCard for: ${recipeName}, Spice Level: ${spiceLvl}`);
   return (
         <li className="recipe-card" key={id} onClick={() => handleClick(recipeName)}>
+          <article className="small-blur">
           <img  src={image} alt={recipeName} />
-          <h6 className="link">{recipeName}</h6>
+          <h6 className="link small">{recipeName}</h6>
             <SpiceLvlScale className="spice-lvl" spiceLvlValue={spiceLvl} />
-            {/* {spiceLvl ? <span> <img src={`src/assets/images/piment.svg`} /> </span> : null} */}
+          </article>
         </li>
       )
 }

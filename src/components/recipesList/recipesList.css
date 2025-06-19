@@ -1,10 +1,7 @@
-
-
-
 .recipes-list {
     display: grid;
-    grid-template-columns: repeat(5, 220px);
-    grid-gap: 20px;
+    grid-template-columns: repeat(4, 220px);
+    grid-gap: 50px;
     padding: 20px;
 }
 

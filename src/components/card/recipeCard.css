@@ -8,6 +8,7 @@
     flex-direction: column;
     border-radius: 20px;
 	width: 220px;
+    height: max-content;
     z-index: 1;
 }
 
@@ -26,6 +27,6 @@
 	z-index: 100;
 }
 
-.recipe-card h5 {
+.recipe-card h6 {
     margin: 10px;
 }

@@ -1,18 +1,23 @@
+import "./recipeFile.css";
+
 const RecipeFile = ({ recipe }) => {
   return (
-    <div className="recipe-file">
-      <h2>{recipe.recipeName}</h2>
-      <img src={recipe.image} alt={recipe.recipeName} />
-      <p>{recipe.description}</p>
-      <h3>Ingredients:</h3>
-      <ul>
-        {recipe.ingredients.map((ingredient, index) => (
-          <li key={index}>{ingredient}</li>
-        ))}
-      </ul>
-      <h3>Instructions:</h3>
+    <article className=" small-blur recipe-file">
+      <h2 className="link">{recipe.recipeName}</h2>
+      <div className="recipe-file-info">
+        <article className="round tertiary-container recipe-file-details">
+          <h3 className="link">Ingrédients:</h3>
+          <ul>
+            {recipe.ingredients.map((ingredient, index) => (
+              <li key={index}>{ingredient}</li>
+            ))}
+          </ul>
+        </article>
+        <img className="recipe-file-image" src={recipe.image} alt={recipe.recipeName} />
+      </div>
+      <h3 className="link">Instructions:</h3>
       <p>{recipe.instructions}</p>
-    </div>
+    </article>
   );
 }
 

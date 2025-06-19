@@ -26,7 +26,7 @@ const SpiceLvlScale = ({ spiceLvlValue }) => {
             }}
           >
           {spiceLvlValue ? 
-            <img src={`src/assets/images/piment.svg`} 
+            <img src={`src/assets/images/chilli.svg`} 
             style={{
                 width: "2rem",
                 height: "2rem",
