@@ -10,14 +10,14 @@ function handleClick(recipeName) {
 }
 
 
-const RecipeCard = ({ id, image, recipeName, spiceLvl }) => {
-  console.log(`Rendering RecipeCard for: ${recipeName}, Spice Level: ${spiceLvl}`);
+const RecipeCard = ({ id, image, recipeName, spiceLvlId }) => {
+  console.log(`Rendering RecipeCard for: ${recipeName}, Spice Level: ${spiceLvlId}`);
   return (
         <li className="recipe-card" key={id} onClick={() => handleClick(recipeName)}>
           <article className="small-blur">
           <img  src={image} alt={recipeName} />
           <h6 className="link small">{recipeName}</h6>
-            <SpiceLvlScale className="spice-lvl" spiceLvlValue={spiceLvl} />
+            <SpiceLvlScale className="spice-lvl" spiceLvlValue={spiceLvlId} />
           </article>
         </li>
       )

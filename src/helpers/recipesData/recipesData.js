@@ -1,8 +1,9 @@
 export const recipesData = [
 {
     id: 1,
-    recipeType: "main",
-    spiceLvl: 1,
+    recipeType: "plat principal",
+    spiceLvlId: "1",
+    spiceLvl: "légèrement épicé 🌶️",
     image: "src/assets/images/carbonara.jpg",
     recipeName: "Spaghetti Carbonara",
     ingredients: [
@@ -39,8 +40,9 @@ export const recipesData = [
 },
 {
     id: 3,
-    recipeType: "main",
-    spiceLvl: 3,
+    recipeType: "plat principal",
+    spiceLvlId: "3",
+    spiceLvl: "Très épicé 🌶️🌶️🌶️",
     image: "src/assets/images/chickenCurry.jpg",
     recipeName: "Chicken Curry",
     ingredients: [
@@ -74,7 +76,7 @@ export const recipesData = [
 },
 {
     id: 5,
-    recipeType: "starter",
+    recipeType: "entrée",
     image: "src/assets/images/bruschetta.jpg",
     recipeName: "Bruschetta",
     ingredients: [
@@ -93,8 +95,9 @@ export const recipesData = [
 },
 {
     id: 6,
-    recipeType: "main",
-    spiceLvl: 4,
+    recipeType: "plat principal",
+    spiceLvlId: "4",
+    spiceLvl: "Mortellement épicé 🌶️🌶️🌶️🌶️",
     image: "src/assets/images/tteokbokki.jpg",
     recipeName: "Teokbokki",
     ingredients: [
@@ -109,6 +112,100 @@ export const recipesData = [
         "Add minced garlic and ginger.",
         "Stir-fry vegetables until tender.",
         "Add soy sauce and serve."
+    ]
+},
+{
+    id: 7,
+    recipeType: "dessert",
+    image: "src/assets/images/cheesecake.jpg",
+    recipeName: "Cheesecake",
+    ingredients: [
+    "200g Cream cheese",
+    "100g Sugar",
+    "2 Eggs",
+    "1 Pie crust"
+    ],
+    instructions: [
+        "Mix cream cheese and sugar.",
+        "Add eggs and blend well.",
+        "Pour into pie crust and bake."
+    ]
+},
+{
+    id: 8,
+    recipeType: "entrée",
+    spiceLvlId: "2",
+    spiceLvl: "Modérément épicé 🌶️🌶️",
+    image: "src/assets/images/springRolls.jpg",
+    recipeName: "Spring Rolls",
+    ingredients: [
+    "Rice paper",
+    "Shrimp",
+    "Vegetables (carrot, cucumber)",
+    "Mint leaves"
+    ],
+    instructions: [
+        "Soak rice paper in water.",
+        "Fill with shrimp, vegetables, and mint.",
+        "Roll tightly and serve with dipping sauce."
+    ]
+},
+{    id: 9,
+    recipeType: "plat principal",
+    spiceLvlId: "1",
+    spiceLvl: "légèrement épicé 🌶️",
+    image: "src/assets/images/vegetableStirFry.avif",
+    recipeName: "Vegetable Stir-Fry",
+    ingredients: [
+    "Mixed vegetables (broccoli, bell pepper, carrot)",
+    "Soy sauce",
+    "Garlic",
+    "Ginger",
+    "Sesame oil"
+    ],
+    instructions: [
+        "Heat sesame oil in a pan.",
+        "Add minced garlic and ginger.",
+        "Stir-fry vegetables until tender.",
+        "Add soy sauce and serve."
+    ]
+},
+{    id: 10,
+    recipeType: "dessert",
+    image: "src/assets/images/pumpkinPie.jpg",
+    recipeName: "Pumpkin Pie",
+    ingredients: [
+    "1 Pie crust",
+    "400g Pumpkin puree",
+    "100g Sugar",
+    "2 Eggs",
+    "5g Cinnamon",
+    "5g Nutmeg"
+    ],
+    instructions: [
+        "Preheat oven to 180°C.",
+        "Mix pumpkin puree, sugar, eggs, cinnamon, and nutmeg.",
+        "Pour into pie crust and bake for 45 minutes."
+    ]
+},
+{    id: 11,
+    recipeType: "entrée",
+    spiceLvlId: "2",
+    spiceLvl: "Modérément épicé 🌶️🌶️",
+    image: "src/assets/images/spicyHummus.jpg",
+    recipeName: "Spicy Hummus",
+    ingredients: [
+    "400g Chickpeas",
+    "50g Tahini",
+    "2 Garlic cloves",
+    "10ml Olive oil",
+    "5g Cumin",
+    "5g Paprika",
+    "5g Chili powder"
+    ],
+    instructions: [
+        "Blend chickpeas, tahini, garlic, olive oil, cumin, paprika, and chili powder until smooth.",
+        "Serve with pita bread or vegetables."
     ]
 }
 ];
