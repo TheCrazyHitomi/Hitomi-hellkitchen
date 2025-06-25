@@ -16,7 +16,7 @@ const RecipeCard = ({ id, image, recipeName, spiceLvlId }) => {
         <li className="recipe-card" key={id} onClick={() => handleClick(recipeName)}>
           <article className="small-blur">
           <img  src={image} alt={recipeName} />
-          <h6 className="link small">{recipeName}</h6>
+          <h6 className="link bold small">{recipeName}</h6>
             <SpiceLvlScale className="spice-lvl" spiceLvlValue={spiceLvlId} />
           </article>
         </li>

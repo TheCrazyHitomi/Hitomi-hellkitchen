@@ -10,7 +10,7 @@ const SpiceLvlScale = ({ spiceLvlValue }) => {
           <div
             style={{
                 position: "absolute",
-                top: "15px",
+                top: "25px",
                 right: "-10px",
                 width: "5rem",
                 height: "2rem",

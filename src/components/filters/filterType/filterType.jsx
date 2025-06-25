@@ -1,4 +1,4 @@
-const FilterType = ({recipeTypes, selectedRecipeType, setSelectedRecipeType }) => {
+const FilterType = ({ selectedRecipeType, setSelectedRecipeType }) => {
 
 
   return (
@@ -6,14 +6,13 @@ const FilterType = ({recipeTypes, selectedRecipeType, setSelectedRecipeType }) =
       <legend htmlFor="recipeType">Type de plat :</legend>
       <div className="field suffix border round ">
         <select name="recipeType" value={selectedRecipeType} onChange={(e) => setSelectedRecipeType(e.target.value)}>
-          <option value="">--</option>
-                    {recipeTypes.map((recipeType) => (
-                        <option key={recipeType}>{recipeType}</option>
-                    ))}
+          <option value="">Catégorie</option>
+          <option value="entrée">Entrée</option>
+          <option value="plat principal">Plat principal</option>
+          <option value="dessert">Dessert</option>
         </select>
         <i>arrow_drop_down</i>
       </div>
-      <button onClick={() => setSelectedRecipeType("")}>Réinitialiser</button>
     </>
   );
 }
