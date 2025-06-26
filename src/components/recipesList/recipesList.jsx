@@ -1,10 +1,10 @@
-import { recipesData } from "../../helpers/recipesData/recipesData";
+import recipesData  from "../../helpers/recipesData/recipesData";
 import { useEffect, useState } from "react";
 
 import RecipeCard from "../card/recipeCard";
 import Filters from "../filters/filters";
-import RecipeFile from "../recipeFile/recipeFile";
 import "./recipesList.css"; // Assuming you have a CSS file for styling
+import { Link } from "react-router-dom";
 
 const RecipesList = () => {
 
@@ -97,20 +97,24 @@ console.log(ingredients);
 
 
   return (
-    <>
+
     <div className="hero-list">
-      <Filters 
-      recipeTypes={recipeTypes} selectedRecipeType={selectedRecipeType} setSelectedRecipeType={setSelectedRecipeType} 
-      spiceLvls={spiceLvls} selectedSpiceLvl={selectedSpiceLvl} setSelectedSpiceLvl={setSelectedSpiceLvl}
-      ingredients={ingredients} selectedIngredients={selectedIngredients} setSelectedIngredients={setSelectedIngredients}/>
-        <ul className="recipes-list">
-      {filteredRecipes.map(recipe => (
-        <RecipeCard key={recipe.id} {...recipe} />
-      ))}
-        </ul>
+      <Filters
+        recipeTypes={recipeTypes} selectedRecipeType={selectedRecipeType} setSelectedRecipeType={setSelectedRecipeType}
+        spiceLvls={spiceLvls} selectedSpiceLvl={selectedSpiceLvl} setSelectedSpiceLvl={setSelectedSpiceLvl}
+        ingredients={ingredients} selectedIngredients={selectedIngredients} setSelectedIngredients={setSelectedIngredients} />
+      
+      <ul className="recipes-list">
+        {filteredRecipes.map(recipe => (
+          <li key={recipe.id}>
+            <Link  to={`/recettes/${recipe.slug}`}>
+              <RecipeCard {...recipe} />
+            </Link>
+          </li>
+        ))}
+      </ul>
+
     </div>
-    <RecipeFile recipe={recipesData[0]} />
-  </>
   );
 }
 

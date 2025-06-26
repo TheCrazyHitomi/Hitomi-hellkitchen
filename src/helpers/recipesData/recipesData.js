@@ -1,11 +1,27 @@
-export const recipesData = [
+import carbonara from "../../assets/images/carbonara.jpg";
+import mousseChocolat from "../../assets/images/mousseChocolat.jpg";
+import chickenCurry from "../../assets/images/chickenCurry.jpg";
+import applePie from "../../assets/images/applePie.jpg";
+import bruschetta from "../../assets/images/bruschetta.jpg";
+import tteokbokki from "../../assets/images/tteokbokki.jpg";
+import cheesecake from "../../assets/images/cheesecake.jpg";
+import springRolls from "../../assets/images/springRolls.jpg";
+import vegetableStirFry from "../../assets/images/vegetableStirFry.avif";
+import pumpkinPie from "../../assets/images/pumpkinPie.jpg";
+import spicyHummus from "../../assets/images/spicyHummus.jpg";
+
+
+
+
+const recipesData = [
 {
     id: 1,
     recipeType: "plat principal",
     spiceLvlId: "1",
     spiceLvl: "légèrement épicé 🌶️",
-    image: "src/assets/images/carbonara.jpg",
+    image: carbonara,
     recipeName: "Spaghetti Carbonara",
+    slug: "spaghetti-carbonara",
     ingredients: [
     " 150g Spaghetti",
     "6 Eggs",
@@ -23,8 +39,9 @@ export const recipesData = [
 {
     id: 2,
     recipeType: "dessert",
-    image: "src/assets/images/mousseChocolat.jpg",
+    image: mousseChocolat,
     recipeName: "Chocolate Mousse",
+    slug: "chocolate-mousse",
     ingredients: [
     "200g Dark chocolate",
     "4 Eggs",
@@ -43,8 +60,9 @@ export const recipesData = [
     recipeType: "plat principal",
     spiceLvlId: "3",
     spiceLvl: "Très épicé 🌶️🌶️🌶️",
-    image: "src/assets/images/chickenCurry.jpg",
+    image: chickenCurry,
     recipeName: "Chicken Curry",
+    slug: "chicken-curry",
     ingredients: [
     "Chicken",
     "Curry powder",
@@ -61,8 +79,9 @@ export const recipesData = [
 {
     id: 4,
     recipeType: "dessert",
-    image: "src/assets/images/applePie.jpg",
+    image: applePie,
     recipeName: "Apple Pie",
+    slug: "apple-pie",
     ingredients: [
     "2 Apples",
     "1 Pie crust",
@@ -77,8 +96,9 @@ export const recipesData = [
 {
     id: 5,
     recipeType: "entrée",
-    image: "src/assets/images/bruschetta.jpg",
+    image: bruschetta,
     recipeName: "Bruschetta",
+    slug: "bruschetta",
     ingredients: [
     "1pce Baguette",
     "2pce Tomatoes",
@@ -98,8 +118,9 @@ export const recipesData = [
     recipeType: "plat principal",
     spiceLvlId: "4",
     spiceLvl: "Mortellement épicé 🌶️🌶️🌶️🌶️",
-    image: "src/assets/images/tteokbokki.jpg",
+    image: tteokbokki,
     recipeName: "Teokbokki",
+    slug: "tteokbokki",
     ingredients: [
     "Rice cakes",
     "Fish cakes",
@@ -117,8 +138,9 @@ export const recipesData = [
 {
     id: 7,
     recipeType: "dessert",
-    image: "src/assets/images/cheesecake.jpg",
+    image: cheesecake,
     recipeName: "Cheesecake",
+    slug: "cheesecake",
     ingredients: [
     "200g Cream cheese",
     "100g Sugar",
@@ -136,8 +158,9 @@ export const recipesData = [
     recipeType: "entrée",
     spiceLvlId: "2",
     spiceLvl: "Modérément épicé 🌶️🌶️",
-    image: "src/assets/images/springRolls.jpg",
+    image: springRolls,
     recipeName: "Spring Rolls",
+    slug: "spring-rolls",
     ingredients: [
     "Rice paper",
     "Shrimp",
@@ -154,8 +177,9 @@ export const recipesData = [
     recipeType: "plat principal",
     spiceLvlId: "1",
     spiceLvl: "légèrement épicé 🌶️",
-    image: "src/assets/images/vegetableStirFry.avif",
+    image: vegetableStirFry,
     recipeName: "Vegetable Stir-Fry",
+    slug: "vegetable-stir-fry",
     ingredients: [
     "Mixed vegetables (broccoli, bell pepper, carrot)",
     "Soy sauce",
@@ -172,8 +196,9 @@ export const recipesData = [
 },
 {    id: 10,
     recipeType: "dessert",
-    image: "src/assets/images/pumpkinPie.jpg",
+    image: pumpkinPie,
     recipeName: "Pumpkin Pie",
+    slug: "pumpkin-pie",
     ingredients: [
     "1 Pie crust",
     "400g Pumpkin puree",
@@ -192,8 +217,9 @@ export const recipesData = [
     recipeType: "entrée",
     spiceLvlId: "2",
     spiceLvl: "Modérément épicé 🌶️🌶️",
-    image: "src/assets/images/spicyHummus.jpg",
+    image: spicyHummus,
     recipeName: "Spicy Hummus",
+    slug: "spicy-hummus",
     ingredients: [
     "400g Chickpeas",
     "50g Tahini",
@@ -209,3 +235,5 @@ export const recipesData = [
     ]
 }
 ];
+
+export default recipesData;

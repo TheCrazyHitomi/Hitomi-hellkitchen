@@ -20,9 +20,10 @@ const Filters = ({recipeTypes, selectedRecipeType, setSelectedRecipeType, spiceL
         <FilterSpiceLevel spiceLvls={spiceLvls} selectedSpiceLvl={selectedSpiceLvl} setSelectedSpiceLvl={setSelectedSpiceLvl}/>
         <FilterIngredient ingredients={ingredients} selectedIngredients={selectedIngredients} setSelectedIngredients={setSelectedIngredients} />
         <button className="close-button" onClick={() => setIsOpen(false)}>Fermer</button>
-        <button className="close-button secondary" onClick={() =>{setSelectedRecipeType("");
-                                                        setSelectedSpiceLvl("");
-                                                        setSelectedIngredients("")}}><Icon className="inverse-primary-text" path={mdiRotateLeft}
+        <button className="close-button secondary" onClick={() =>{
+                                                    setSelectedRecipeType("");
+                                                    setSelectedSpiceLvl("");
+                                                    setSelectedIngredients("")}}><Icon className="inverse-primary-text" path={mdiRotateLeft}
                                                                                           title="User Profile"
                                                                                           size={1}
                                                                                           horizontal
