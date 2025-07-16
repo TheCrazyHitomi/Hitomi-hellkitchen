@@ -11,6 +11,7 @@ import NewRecipe from './pages/newRecipe/newRecipe'
 import Footer from './components/footer/footer'
 import RecipeFile from './components/recipeFile/recipeFile'
 
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>

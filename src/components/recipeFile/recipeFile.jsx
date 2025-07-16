@@ -1,11 +1,25 @@
-import "./recipeFile.css";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useParams } from "react-router-dom";
-import recipesData from "../../helpers/recipesData/recipesData"; // Assuming you have a JSON file with recipe data
+
 import Header from "../header/header";
+import "./recipeFile.css";
 
 const RecipeFile = () => {
   const { slug } = useParams();
-  const recipe = recipesData.find(r => r.slug === slug);
+  const [recipes, setRecipes] = useState([]);
+  const recipe = recipes.find(r => r.slug === slug); // Assuming each recipe has a 'slug' property
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/api/recipes") // Replace with your API endpoint
+      .then(response => {
+        console.log(response.data);
+        setRecipes(response.data); // Assuming the response data is an array of recipes
+      })
+      .catch(error => {
+        console.error("Erreur de chargeement des recettes.", error);
+      });
+  }, []);
 
   if (!recipe) {
     return <p>Recipe not found</p>;

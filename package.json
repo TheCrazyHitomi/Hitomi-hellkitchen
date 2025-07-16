@@ -12,6 +12,7 @@
   "dependencies": {
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
+    "axios": "^1.10.0",
     "beercss": "^3.11.18",
     "material-dynamic-colors": "^1.1.2",
     "react": "^19.1.0",
