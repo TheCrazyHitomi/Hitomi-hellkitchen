@@ -24,6 +24,7 @@ const RecipeFile = () => {
   if (!recipe) {
     return <p>Recipe not found</p>;
   }
+  console.log("Recipe details:", recipe);
 
   return (
     <>
@@ -35,15 +36,22 @@ const RecipeFile = () => {
           <article className="round tertiary-container recipe-file-details">
             <h3 className="link">Ingrédients:</h3>
             <ul>
-              {recipe.ingredients.map((ingredient, index) => (
-                <li key={index}>{ingredient}</li>
+              {recipe.ingredients.map((ing, i) => (
+                <li key={i}>{`${ing.quantity} ${ing.unit} ${ing.ingredient}`}</li>
               ))}
             </ul>
           </article>
           <img className="recipe-file-image" src={recipe.image} alt={recipe.recipeName} />
         </div>
         <h3 className="link">Instructions:</h3>
-        <p>{recipe.instructions}</p>
+        <ul>
+          {recipe.instructions.map((inst, s, t) => (
+        <ul>
+            <li key={s}>{`${inst.step} :`}</li>
+            <li key={t}>{inst.text}</li>
+        </ul>
+          ))}
+        </ul>
       </article>
       </div>
     </>
