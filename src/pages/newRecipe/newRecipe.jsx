@@ -94,6 +94,34 @@ const NewRecipe = () => {
     setInstructions(newInstructions);
   };  
 
+
+
+  // Fonction pour valider le formulaire
+  // Elle vérifie que tous les champs requis sont remplis
+  // Elle retourne un tableau d'erreurs si des champs sont manquants
+  // Sinon, elle retourne un tableau vide
+  // Cette fonction est appelée avant la soumission du formulaire pour s'assurer que toutes les données sont valides
+const validateForm = () => {
+  const errors = [];
+
+  if (!recipeName.trim()) errors.push("Nom de la recette");
+  if (recipeType === "category") errors.push("Type de plat");
+  if (!imageFile) errors.push("Image");
+  
+  const hasValidIngredients = ingredients.some(
+    (i) => !i.quantity?.trim() || !i.unit?.trim() || !i.ingredient?.trim()
+  );
+  if (hasValidIngredients) errors.push("certains ingrédients ne sont pas complets");
+
+  const hasInstructions = instructions.some(
+    (ins) => !ins.step?.trim() || !ins.text?.trim()
+  );
+  if (hasInstructions) errors.push("certaines instructions ne sont pas complètes");
+
+  return errors;
+};
+
+
   // Fonction pour gérer la soumission du formulaire
   // Elle empêche le comportement par défaut du formulaire, prépare les données de la recette
   // et envoie une requête POST à l'API pour ajouter la nouvelle recette
@@ -129,6 +157,14 @@ const spiceLvlId = getSpiceLevelId(spiceLvl);
 
 const recipeSlug = recipeName.toLowerCase().replace(/\s+/g, '-'); // Générer un slug à partir du nom de la recette
 
+const errors = validateForm();
+  if (errors.length > 0) {
+    alert("Veuillez remplir les champs suivants :\n- " + errors.join("\n- "));
+    return;
+  }
+
+  try {
+
     const newRecipe = {
       recipeName,
       recipeType,
@@ -149,7 +185,6 @@ const recipeSlug = recipeName.toLowerCase().replace(/\s+/g, '-'); // Générer u
 
     console.log("Nouvelle recette :", newRecipe);
 
-    try {
       const response = await axios.post("http://localhost:3000/api/recipes", newRecipe); 
       const result = response.data;
       alert("Recette ajoutée avec succès !");
