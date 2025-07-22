@@ -13,11 +13,14 @@ const NewRecipe = () => {
   const [spiceLvl, setSpiceLvl] = React.useState("category"); 
   const [previewImage, setPreviewImage] = React.useState("src/assets/images/HHK-logo.png");
   const [imageFile, setImageFile] = React.useState(null);
+  const [ingredients, setIngredients] = React.useState([{ quantity: "", unit: "pce", ingredient: "" }]);
+  const [instructions, setInstructions] = React.useState([{ step: "", text: "" }]);
 
-  const [ingredients, setIngredients] = React.useState([
-    { quantity: "", unit: "pce", ingredient: "" } 
-  ]);
-  const [instructions, setInstructions] = React.useState([ { step: "", text: "" } ]);
+
+
+  // Fonction pour gérer le changement d'image
+  // Cette fonction est appelée lorsque l'utilisateur sélectionne une image
+  // Elle met à jour l'état de l'image et crée un aperçu de l'image sélectionnée
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -35,7 +38,7 @@ const NewRecipe = () => {
   };
 }, [previewImage]);
 
-  const uploadImageToCloudinary = async () => {
+  const uploadImageToCloudinary = async (imageFile) => {
     if (!imageFile) {
       console.error("Aucun fichier image sélectionné.");
       return;
@@ -43,18 +46,20 @@ const NewRecipe = () => {
 
     const formData = new FormData();
     formData.append("file", imageFile);
-    formData.append("upload_preset", "your_upload_preset"); // Remplacez par votre propre preset
+    formData.append("upload_preset", "HitomiHK"); // Remplacez par votre propre preset
 
     try {
-      const response = await axios.post("https://api.cloudinary.com/v1_1/dwtspfxgz/image/upload", 
-        { method: "POST", 
-          body: formData }
-        );
+      const response = await axios.post("https://api.cloudinary.com/v1_1/dwtspfxgz/image/upload", formData);
+      console.log("Upload réussi :", response.data);
       return response.data.secure_url;
     } catch (error) {
       console.error("Erreur lors de l'upload de l'image :", error);
     }
   };
+
+  // Fonctions pour gérer les changements dans les ingrédients
+  // Ces fonctions mettent à jour l'état des ingrédients en fonction des entrées
+  // Elles permettent également d'ajouter ou de supprimer des ingrédients
 
   const handleIngredientChange = (index, field, value) => {
     const newIngredients = [...ingredients];
@@ -70,15 +75,13 @@ const NewRecipe = () => {
     setIngredients(newIngredients);
   };
 
-  const handleStepInstructionChange = (index, value) => {
+  // Fonctions pour gérer les changements dans les instructions
+  // Elles mettent à jour l'état des instructions en fonction des entrées
+  // Elles permettent également d'ajouter ou de supprimer des instructions
+
+  const handleInstructionChange = (index, field, value) => {
     const newInstructions = [...instructions];
-    newInstructions[index].step = value;
-    setInstructions(newInstructions);
-  };
-  const handleInstructionChange = (index, value) => {
-    const newInstructions = [...instructions];
-    newInstructions[index] = value;
-    newInstructions[index] = value;
+    newInstructions[index][field] = value;
     setInstructions(newInstructions);
   };
 
@@ -91,15 +94,21 @@ const NewRecipe = () => {
     setInstructions(newInstructions);
   };  
 
+  // Fonction pour gérer la soumission du formulaire
+  // Elle empêche le comportement par défaut du formulaire, prépare les données de la recette
+  // et envoie une requête POST à l'API pour ajouter la nouvelle recette
+  // Elle gère également l'upload de l'image si une image a été sélectionnée
+  // En cas de succès, elle affiche un message de succès, sinon elle affiche une erreur
+
   const handleSubmit = async (event) => {
     event.preventDefault(); 
     let imageUrl = "";
     // Vérifier si une image a été sélectionnée et l'uploader
     if (imageFile) {
-      imageUrl = await uploadImageToCloudinary();
+      imageUrl = await uploadImageToCloudinary(imageFile);
     } 
 
-    const formattedIngredients = ingredients.map(ing => `${ing.quantity} ${ing.unit} ${ing.ingredient}`).join(", ");  
+    // const formattedIngredients = ingredients.map(ing => `${ing.quantity} ${ing.unit} ${ing.ingredient}`).join(", ");  
 
     const getSpiceLevelId = (spiceLvl) => {
       switch (spiceLvl) {
@@ -118,28 +127,31 @@ const NewRecipe = () => {
 
 const spiceLvlId = getSpiceLevelId(spiceLvl);
 
+const recipeSlug = recipeName.toLowerCase().replace(/\s+/g, '-'); // Générer un slug à partir du nom de la recette
+
     const newRecipe = {
-      name: recipeName,
-      type: recipeType,
-      spiceLevel: spiceLvl,
-      spiceLvlId: spiceLvlId, // Assurez-vous que c'est le bon format pour votre API
-      image: imageUrl || previewImage, // Utiliser l'URL de l'image upload
-      ingredients : formattedIngredients,
-      instructions: instructions.map((text, i) => ([{
-          step: `Étape ${i + 1}`,
-          text
-  }]))
+      recipeName,
+      recipeType,
+      spiceLvl,
+      spiceLvlId, // Assurez-vous que c'est le bon format pour votre API
+      slug: recipeSlug,
+      image: imageUrl, // Utiliser l'URL de l'image upload
+      ingredients : ingredients.map(ing => ({
+        quantity: ing.quantity,
+        unit: ing.unit,
+        ingredient: ing.ingredient
+      })),
+      instructions: instructions.map((ins => ({
+          step: ins.step,
+          text: ins.text
+      })))
     };
 
     console.log("Nouvelle recette :", newRecipe);
 
     try {
-      const response = await axios.post("http://localhost:3000/api/recipes", 
-        { method: "POST", 
-          headers: { "Content-Type": "application/json"},
-          body: JSON.stringify(newRecipe) }
-      ); 
-      const result = await response.json();
+      const response = await axios.post("http://localhost:3000/api/recipes", newRecipe); 
+      const result = response.data;
       alert("Recette ajoutée avec succès !");
       console.log("Réponse du serveur :", result);
     } catch (error) {
@@ -147,6 +159,11 @@ const spiceLvlId = getSpiceLevelId(spiceLvl);
       alert("Erreur lors de l'ajout de la recette. Veuillez réessayer.");
     }
   };
+
+  // Rendu du composant NewRecipe
+  // Il affiche le formulaire pour ajouter une nouvelle recette
+  // Le formulaire comprend des sélecteurs pour le type de plat et le niveau d'épice
+  // Des champs pour le nom de la recette, les ingrédients et les instructions  
 
   return (
     <div>
@@ -187,7 +204,7 @@ const spiceLvlId = getSpiceLevelId(spiceLvl);
           </div>
           {/* bouton d'ajout d'image */}
           <img className="top-round left-round medium" src={previewImage} alt="Aperçu de l'image" />
-          <button className="circle">
+          <button className="circle" onChange={handleImageChange} type="button">
             <i>image</i>
             <input type="file" onChange={handleImageChange} accept="image/*" />
           </button>
@@ -248,15 +265,12 @@ const spiceLvlId = getSpiceLevelId(spiceLvl);
         {/* input instructions */}
         <fieldset className="fieldset">
           <legend>Les instructions</legend>
-          {instructions.map((step, i) => (
+          {instructions.map((ins, i) => (
             <div className="column fieldset" key={i}>
               <div className="max">
                 <div className="row">
                 <div className="field label max border round fill">
-                  <input 
-                  value={step.step}
-                  onChange={(e) => handleStepInstructionChange(i, e.target.value)}
-                  />
+                  <input value={ins.step} onChange={(e) => handleInstructionChange(i, 'step', e.target.value)}/>
                   <label>{`Étape ${i + 1}`}</label>
                   </div>
                   <button type="button" onClick={() => handleRemoveInstruction(i)}><i>close</i></button>
@@ -264,7 +278,7 @@ const spiceLvlId = getSpiceLevelId(spiceLvl);
               </div>
               <div className="max">
                 <div className="field textarea label border round fill extra">
-                  <textarea value={step.text} onChange={(e) => handleInstructionChange(i, e.target.value)}></textarea>
+                  <textarea value={ins.text} onChange={(e) => handleInstructionChange(i, 'text', e.target.value)}></textarea>
                   <label>Instructions</label>
                 </div>
               </div>
