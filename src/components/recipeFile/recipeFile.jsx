@@ -30,6 +30,10 @@ const RecipeFile = () => {
     <>
       <Header />
       <div className="recipe-file-container">
+        <div className="edit-recipe-buttons">
+        <button className="small-elevate">modifier</button>
+        <button className="error small-elevate">supprimer</button>
+      </div>
       <article className=" small-blur recipe-file">
         <h2 className="link">{recipe.recipeName}</h2>
         <div className="recipe-file-info">
@@ -53,6 +57,7 @@ const RecipeFile = () => {
           ))}
         </ul>
       </article>
+      
       </div>
     </>
   );

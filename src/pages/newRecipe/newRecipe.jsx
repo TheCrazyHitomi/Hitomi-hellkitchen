@@ -1,7 +1,8 @@
 import React from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../../components/header/header";
+import ErrorToast from "../../components/errorToast/errorToast";
 import "beercss"
 import "./newRecipe.css";
 
@@ -121,6 +122,7 @@ const validateForm = () => {
   return errors;
 };
 
+const [formErrors, setFormErrors] = useState([]);
 
   // Fonction pour gérer la soumission du formulaire
   // Elle empêche le comportement par défaut du formulaire, prépare les données de la recette
@@ -157,9 +159,11 @@ const spiceLvlId = getSpiceLevelId(spiceLvl);
 
 const recipeSlug = recipeName.toLowerCase().replace(/\s+/g, '-'); // Générer un slug à partir du nom de la recette
 
+
+
 const errors = validateForm();
   if (errors.length > 0) {
-    alert("Veuillez remplir les champs suivants :\n- " + errors.join("\n- "));
+    setFormErrors(errors);
     return;
   }
 
@@ -188,24 +192,56 @@ const errors = validateForm();
       const response = await axios.post("http://localhost:3000/api/recipes", newRecipe); 
       const result = response.data;
       alert("Recette ajoutée avec succès !");
-      console.log("Réponse du serveur :", result);
+      resetForm(); // Réinitialiser le formulaire après la soumission réussie
+      console.log("Nouvelle recette ajoutée :", result);
     } catch (error) {
       console.error("❌ Erreur lors de l'ajout de la recette :", error);
       alert("Erreur lors de l'ajout de la recette. Veuillez réessayer.");
     }
   };
 
+  // Effet pour gérer le clic en dehors de la liste d'erreurs
+  // Il permet de fermer la liste d'erreurs lorsque l'utilisateur clique en dehors de celle-ci
+  // Cela améliore l'expérience utilisateur en évitant que la liste reste ouverte indéfiniment
+  // Il utilise un écouteur d'événements pour détecter les clics
+
+
+    useEffect(() => {
+        const handleclickOutside = () => {
+            if(formErrors.length > 0) {
+                setFormErrors([]);
+            }
+        }
+        document.addEventListener("click", handleclickOutside);
+        return () => {
+            document.removeEventListener("click", handleclickOutside);
+        }
+    }, [formErrors]);
+
+
+    const resetForm = () => {
+      setRecipeName("");
+      setRecipeType("category");
+      setSpiceLvl("category");
+      setPreviewImage("src/assets/images/HHK-logo.png");
+      setImageFile(null);
+      setIngredients([{ quantity: "", unit: "pce", ingredient: "" }]);
+      setInstructions([{ step: "", text: "" }]);
+      setFormErrors([]);
+    };
+  
   // Rendu du composant NewRecipe
   // Il affiche le formulaire pour ajouter une nouvelle recette
   // Le formulaire comprend des sélecteurs pour le type de plat et le niveau d'épice
   // Des champs pour le nom de la recette, les ingrédients et les instructions  
 
   return (
-    <div>
-      <Header />
-      <h3>Créer une nouvelle recette</h3>
-      <div className="form-container">
-      {/* Formulaire pour ajouter une nouvelle recette */}
+    <>
+      <div>
+        <Header />
+        <h3>Créer une nouvelle recette</h3>
+        <div className="form-container">
+          {/* Formulaire pour ajouter une nouvelle recette */}
       <form onSubmit={handleSubmit}>
 
         <div className="row select-container"> 
@@ -335,6 +371,11 @@ const errors = validateForm();
       </form>
       </div>
     </div>
+
+  <div>
+    <ErrorToast formErrors={formErrors} />
+  </div>
+</>
   );
 };
 

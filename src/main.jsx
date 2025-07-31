@@ -22,6 +22,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/plats" element={<Plats />} />
           <Route path="/desserts" element={<Desserts />} />
           <Route path="/nouvelle-recette" element={<NewRecipe />} />
+          <Route path="/recettes/:slug/edit" element={<EditRecipe />} />
           <Route path="/recettes/:slug" element={<RecipeFile />} />
         </Routes>
         <Footer />
