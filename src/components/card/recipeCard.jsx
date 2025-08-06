@@ -4,8 +4,8 @@ import "./recipeCard.css"; // Assuming you have a CSS file for styling
 import SpiceLvlScale from "./spiceLvl/spiceLvl";
 
 
-const RecipeCard = ({ id, image, recipeName, spiceLvlId }) => {
-  console.log(`Rendering RecipeCard for: ${recipeName}, Spice Level: ${spiceLvlId}`);
+const RecipeCard = ({ id, image, recipeName, recipeType, spiceLvlId }) => {
+  console.log(`Rendering RecipeCard for: ${recipeType} ${recipeName}, Spice Level: ${spiceLvlId}`);
   return (
         <div className="recipe-card" key={id} >
           <article className="small-blur">
