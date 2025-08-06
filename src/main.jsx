@@ -10,6 +10,7 @@ import Desserts from './pages/desserts/desserts'
 import NewRecipe from './pages/newRecipe/newRecipe'
 import Footer from './components/footer/footer'
 import RecipeFile from './components/recipeFile/recipeFile'
+import EditRecipe from './pages/editRecipe/editrecipe'
 
 
 createRoot(document.getElementById('root')).render(

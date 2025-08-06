@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import Header from "../header/header";
 import "./recipeFile.css";
@@ -31,7 +31,7 @@ const RecipeFile = () => {
       <Header />
       <div className="recipe-file-container">
         <div className="edit-recipe-buttons">
-        <button className="small-elevate">modifier</button>
+          <Link to={`/recettes/${recipe.slug}/edit`} state={{ id: recipe._id }}>Modifier </Link>
         <button className="error small-elevate">supprimer</button>
       </div>
       <article className=" small-blur recipe-file">
