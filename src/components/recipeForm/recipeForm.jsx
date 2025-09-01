@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { api } from "../../helpers/api";
 import ErrorToast from "../../components/errorToast/errorToast";
 import "beercss";
 import "./recipeForm.css";
@@ -15,6 +17,7 @@ const RecipeForm = ({ mode = "create", initialData = {}, onSubmit }) => {
     initialData.instructions?.map(ins => ({ step: ins.step || "", text: ins.text || "" })) || [{ step: "", text: "" }]
   );
   const [formErrors, setFormErrors] = useState([]);
+  const navigate = useNavigate();
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -159,7 +162,18 @@ const RecipeForm = ({ mode = "create", initialData = {}, onSubmit }) => {
     // 
     try {
       if (mode === "create") {
-        await axios.post("http://localhost:3000/api/recipes", recipeData);
+        // loading true
+        await api.post("/recipes", recipeData); 
+        // loading false
+        
+        /**
+         * mettre une barre de chargement dans le .then
+         * mettre l'alerte dans le .then
+         * 
+         * 
+         */
+        
+        
         alert("Recette ajoutée avec succès !");
       } else {
         await onSubmit(recipeData, imageFile);
@@ -167,6 +181,9 @@ const RecipeForm = ({ mode = "create", initialData = {}, onSubmit }) => {
       resetForm();
     } catch (error) {
       console.error("Erreur lors de l'envoi des données :", error);
+      if (error.response && error.response.status === 401){
+        navigate("/login");
+      }
       alert("Erreur pendant l'envoi. Veuillez réessayer.");
     }
   };

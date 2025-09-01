@@ -31,12 +31,12 @@ ul li a.active {
   color: #0bbb7b;
 }
 
-.new-recipe {
+.connexion {
   font-weight: bold;
   color: #0bbb7b;
 }
 
-.new-recipe:hover {
+.connexion:hover {
   font-weight: bold;
   color: #fd8fa4;
 } 

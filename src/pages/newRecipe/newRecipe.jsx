@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../../components/header/header";
 import RecipeForm from "../../components/recipeForm/recipeForm";
 import axios from "axios";
+import { api } from "../../helpers/api";
 
 const NewRecipe = () => {
   const handleCreate = async (recipeData, imageFile, resetForm) => {
@@ -25,7 +26,7 @@ const NewRecipe = () => {
         image: imageUrl,
       };
 
-      await axios.post("http://localhost:3000/api/recipes", finalRecipe);
+      await api.post("/recipes", finalRecipe);
       alert("Recette ajoutée avec succès !");
       resetForm();
     } catch (error) {

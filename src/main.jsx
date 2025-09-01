@@ -12,6 +12,9 @@ import Footer from './components/footer/footer'
 import RecipeFile from './components/recipeFile/recipeFile'
 import EditRecipe from './pages/editRecipe/editrecipe'
 
+import Connexion from './pages/connexion/connexion'
+import Inscription from './pages/inscription/inscription'
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -25,6 +28,8 @@ createRoot(document.getElementById('root')).render(
           <Route path="/nouvelle-recette" element={<NewRecipe />} />
           <Route path="/recettes/:slug/edit" element={<EditRecipe />} />
           <Route path="/recettes/:slug" element={<RecipeFile />} />
+          <Route path="/connexion" element={<Connexion />} />
+          <Route path="/inscription" element={<Inscription />} />
         </Routes>
         <Footer />
     </BrowserRouter>

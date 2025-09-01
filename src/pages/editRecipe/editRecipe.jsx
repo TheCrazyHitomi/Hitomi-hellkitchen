@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Header from "../../components/header/header";
 import RecipeForm from "../../components/recipeForm/recipeForm";
 import axios from "axios";
+import { api } from "../../helpers/api";
 
 const EditRecipe = () => {
   const id = useLocation().state?.id || null;
@@ -14,7 +15,7 @@ const EditRecipe = () => {
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/recipes/${id}`);
+        const res = await api.get(`/recipes/${id}`);
         setRecipeData(res.data);
       } catch (error) {
         console.error("Erreur lors de la récupération de la recette :", error);
@@ -46,7 +47,7 @@ const EditRecipe = () => {
         image: imageUrl,
       };
 
-      await axios.put(`http://localhost:3000/api/recipes/${id}`, finalRecipe);
+      await api.put(`/recipes/${id}`, finalRecipe);
       alert("Recette mise à jour avec succès !");
       navigate("/recettes/" + finalRecipe.slug);
     } catch (error) {
